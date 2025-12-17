@@ -8,27 +8,42 @@ datasource db {
 }
 
 model Aluno {
-  id String @id
-  nome String
-  email String
+  id String @id @default(uuid())
+  nome String @db.VarChar(120)
+  email String @unique @db.Char(60)
   senha String
-  dtNascimento DateTime
-  formado Boolean
+  dtNascimento DateTime? @db.Date @map("dt_nascimento")
+  formado Boolean @default(false)
+
+  dtCriacao DateTime @map("dt_criacao") @default(now())
+  dtAtualizacao DateTime @map("dt_atualizacao")
+
+  @@map("aluno")
 }
 
 model Curso {
-  id String @id
+  id String @id @default(uuid())
   titulo String
   ementa String
   cargaHoraria Decimal
-  maxAlunos Int
+  maxAlunos Int @default(30) @db.SmallInt @map("max_alunos")
   status String
+
+  dtCriacao DateTime @map("dt_criacao") @default(now())
+  dtAtualizacao DateTime @map("dt_atualizacao")
+
+  @@map("curso")
 }
 
 model Material {
-  id Int @id
+  id Int @id @default(autoincrement())
   titulo String
   descricao String
   link String
   disponivel String
+
+  dtCriacao DateTime @map("dt_criacao") @default(now())
+  dtAtualizacao DateTime @map("dt_atualizacao")
+
+  @@map("material")
 }
