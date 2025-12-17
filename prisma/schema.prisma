@@ -7,43 +7,43 @@ datasource db {
   provider = "postgresql"
 }
 
-model Aluno {
+model Student {
   id String @id @default(uuid())
-  nome String @db.VarChar(120)
+  nanme String @db.VarChar(120)
   email String @unique @db.Char(60)
-  senha String
-  dtNascimento DateTime? @db.Date @map("dt_nascimento")
-  formado Boolean @default(false)
+  password String
+  dtBirth DateTime? @db.Date @map("dt_birth")
+  formed Boolean @default(false)
 
-  dtCriacao DateTime @map("dt_criacao") @default(now())
-  dtAtualizacao DateTime @map("dt_atualizacao") @updatedAt
+  dtCreate DateTime @map("dt_create") @default(now())
+  dtUptade DateTime @map("dt_uptade") @updatedAt
 
-  @@map("aluno")
+  @@map("student")
 }
 
-model Curso {
+model Course {
   id String @id @default(uuid())
-  titulo String
+  title String
   ementa String
-  cargaHoraria Decimal
-  maxAlunos Int @default(30) @db.SmallInt @map("max_alunos")
+  hourlyLoad Decimal
+  maxStudents Int @default(30) @db.SmallInt @map("max_alunos")
   status String
 
-  dtCriacao DateTime @map("dt_criacao") @default(now())
-  dtAtualizacao DateTime @map("dt_atualizacao") @updatedAt
+  dtCreate DateTime @map("dt_create") @default(now())
+  dtUptade DateTime @map("dt_uptade") @updatedAt
 
-  @@map("curso")
+  @@map("course")
 }
 
 model Material {
   id Int @id @default(autoincrement())
-  titulo String
-  descricao String
+  title String
+  discription String
   link String
-  disponivel String
+  avaliable String
 
-  dtCriacao DateTime @map("dt_criacao") @default(now())
-  dtAtualizacao DateTime @map("dt_atualizacao") @updatedAt
+  dtCreate DateTime @map("dt_create") @default(now())
+  dtUptade DateTime @map("dt_uptade") @updatedAt
 
   @@map("material")
 }
