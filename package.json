@@ -8,10 +8,11 @@
   "author": "",
   "type": "commonjs",
   "devDependencies": {
+    "prisma": "^7.2.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "prisma": "^7.1.0"
+    "@prisma/client": "^7.2.0"
   }
 }
