@@ -6,3 +6,29 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Aluno {
+  id String @id
+  nome String
+  email String
+  senha String
+  dtNascimento DateTime
+  formado Boolean
+}
+
+model Curso {
+  id String @id
+  titulo String
+  ementa String
+  cargaHoraria Decimal
+  maxAlunos Int
+  status String
+}
+
+model Material {
+  id Int @id
+  titulo String
+  descricao String
+  link String
+  disponivel String
+}
