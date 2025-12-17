@@ -18,7 +18,21 @@ model Student {
   dtCreate DateTime @map("dt_create") @default(now())
   dtUptade DateTime @map("dt_uptade") @updatedAt
 
+  adress Adress?
+
   @@map("student")
+}
+
+model Adress {
+  id String @id @default(uuid())
+  road String @db.VarChar(30)
+  neighborhood String @db.VarChar(30)
+  number Int
+  city String @db.VarChar(50)
+
+  idStudent String @unique
+  student Student @relation(fields: [idStudent],references: [id])
+
 }
 
 model Course {
