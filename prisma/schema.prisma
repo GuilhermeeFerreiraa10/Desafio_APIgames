@@ -33,6 +33,7 @@ model Adress {
   idStudent String @unique
   student Student @relation(fields: [idStudent],references: [id])
 
+  @@map("adress")
 }
 
 model Course {
