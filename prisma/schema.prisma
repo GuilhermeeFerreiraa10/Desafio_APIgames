@@ -16,7 +16,7 @@ model Aluno {
   formado Boolean @default(false)
 
   dtCriacao DateTime @map("dt_criacao") @default(now())
-  dtAtualizacao DateTime @map("dt_atualizacao")
+  dtAtualizacao DateTime @map("dt_atualizacao") @updatedAt
 
   @@map("aluno")
 }
@@ -30,7 +30,7 @@ model Curso {
   status String
 
   dtCriacao DateTime @map("dt_criacao") @default(now())
-  dtAtualizacao DateTime @map("dt_atualizacao")
+  dtAtualizacao DateTime @map("dt_atualizacao") @updatedAt
 
   @@map("curso")
 }
@@ -43,7 +43,7 @@ model Material {
   disponivel String
 
   dtCriacao DateTime @map("dt_criacao") @default(now())
-  dtAtualizacao DateTime @map("dt_atualizacao")
+  dtAtualizacao DateTime @map("dt_atualizacao") @updatedAt
 
   @@map("material")
 }
