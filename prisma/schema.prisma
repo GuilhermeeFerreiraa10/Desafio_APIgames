@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Student {
-  id String @id @db.Uuid @default(uuid())
+  id String @id  @default(uuid()) @db.Uuid 
   name String @db.VarChar(120)
   email String @unique @db.Char(60)
   password String
@@ -26,7 +26,7 @@ model Student {
 }
 
 model Adress {
-  id String @id @db.Uuid @default(uuid())
+  id String @id  @default(uuid()) @db.Uuid
   road String @db.VarChar(30)
   neighborhood String @db.VarChar(30)
   number Int
@@ -39,7 +39,7 @@ model Adress {
 }
 
 model Assessment {
-  id String @id @db.Uuid @default(uuid())
+  id String @id  @default(uuid()) @db.Uuid
   Discipline String @db.VarChar(30)
   notice Int @db.SmallInt
   dtAssessment DateTime @default(now()) @map("dt_assessment")
@@ -51,7 +51,7 @@ model Assessment {
 }
 
 model Course {
-  id String @id @db.Uuid @default(uuid())
+  id String @id  @default(uuid()) @db.Uuid
   title String
   ementa String
   hourlyLoad Decimal
@@ -67,7 +67,7 @@ model Course {
 }
 
 model Matricula {
-  idStudent String @map("id_student") @db.Uuid
+  idStudent String @map("id_student")
   idCourse String @map("id_course") 
   dtMatricula DateTime @default(now()) @map("dt_maricula")
 
