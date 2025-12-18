@@ -19,6 +19,7 @@ model Student {
   dtUptade DateTime @map("dt_uptade") @updatedAt
 
   adress Adress?
+  reviews Assessment[]
 
   @@map("student")
 }
@@ -34,6 +35,18 @@ model Adress {
   student Student @relation(fields: [idStudent],references: [id])
 
   @@map("adress")
+}
+
+model Assessment {
+  id String @id @default(uuid())
+  Discipline String @db.VarChar(30)
+  notice Int @db.SmallInt
+  dtAssessment DateTime @default(now()) @map("dt_assessment")
+
+  idStudent String @map("id_student")
+  student Student @relation(fields: [idStudent], references: [id])
+
+  @@map("update")
 }
 
 model Course {
