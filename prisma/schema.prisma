@@ -20,7 +20,7 @@ model Student {
 
   adress Adress?
   reviews Assessment[]
-  registration Registration[]
+  Matriculas Matricula[]
 
   @@map("student")
 }
@@ -47,7 +47,7 @@ model Assessment {
   idStudent String @map("id_student")
   student Student @relation(fields: [idStudent], references: [id])
 
-  @@map("update")
+  @@map("assessment")
 }
 
 model Course {
@@ -61,21 +61,21 @@ model Course {
   dtCreate DateTime @map("dt_create") @default(now())
   dtUptade DateTime @map("dt_uptade") @updatedAt
 
-  registration Registration[]
+  Matriculas Matricula[]
 
   @@map("course")
 }
 
-model Registration {
+model Matricula {
   idStudent String @map("id_student")
   idCourse String @map("id_course") 
-  dtRegistration DateTime @default(now()) @map("dt_registration")
+  dtMatricula DateTime @default(now()) @map("dt_maricula")
 
   student Student @relation(fields: [idStudent], references: [id])
   course Course @relation(fields: [idCourse], references: [id])
 
   @@id([idStudent, idCourse])
-  @@map("registration")
+  @@map("matricula")
 }
 
 model Material {
