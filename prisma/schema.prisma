@@ -8,9 +8,9 @@ datasource db {
 }
 
 model Student {
-  id String @id @default(uuid()) @db.Uuid 
+  id String @id @default(uuid()) 
   name String @db.VarChar(120)
-  email String @unique @db.Char(60)
+  email String @unique @db.Char(100)
   password String
   dtBirth DateTime? @db.Date @map("dt_birth")
   formed Boolean @default(false)
