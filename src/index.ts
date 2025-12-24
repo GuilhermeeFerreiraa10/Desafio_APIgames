@@ -18,5 +18,9 @@ async function main() {
   });
 
   console.log(newStudent);
+
+
+  //Atualizando um aluno
+
 }
 main();
