@@ -23,9 +23,9 @@ export class AlunoRepository {
 
     //método para criar um novo aluno
     public async create(dados: CreateAlunoDto) {
-        const newStudent = await prisma.student.create({
+        const Student = await prisma.student.create({
             data: dados
         });
-        return newStudent;
+        return Student;
    }
 }
