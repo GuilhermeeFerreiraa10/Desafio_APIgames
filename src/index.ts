@@ -1,26 +1,46 @@
-import { AlunoRepository } from "../src/datadase/aluno.repository";
+import { StudentRepository } from "./datadase/student.repository";
+import { AssessmentRepository } from "./datadase/assessment.repository";
 
-const alunoRepository = new AlunoRepository();
+const studentRepository = new StudentRepository();
+const assessmentRepository = new AssessmentRepository();
 async function main() {
-  // listando todos os alunos
-  // const students = await alunoRepository.list();
+  // List all students
+  // const students = await studentRepository.list();
   // console.log(students);
 
   //Get by ID
-  // const student = await alunoRepository.GetbyID("62e278a1-5323-47a8-bebd-93be35f6fe19");
+  // const student = await studentRepository.GetbyID("62e278a1-5323-47a8-bebd-93be35f6fe19");
   // console.log(student);
 
-  //Criando um novo aluno
-  const newStudent = await alunoRepository.create({
-    name: "Andreia Ferreira",
-    email: "andreia13@example.com",
-    password: "123456",
-  });
+  // Create new student
+  // const newStudent = await studentRepository.create({
+  //   name: "Andreia Ferreira",
+  //   email: "andreia13@example.com",
+  //   password: "123456",
+  // });
 
-  console.log(newStudent);
+  // console.log(newStudent);
 
 
-  //Atualizando um aluno
+// Update student
+//   const updatedStudent = await studentRepository.update("62e278a1-5323-47a8-bebd-93be35f6fe19", {
+//     name: "Andreia Souza",
+//     email: "deia13@example.com",
+//   });
 
+//   console.log(updatedStudent);
+// }
+
+// Delete student
+//   const deletedStudent = await studentRepository.delete("43310507-a843-4e0a-84cb-5df0e3926b03");
+//   console.log(deletedStudent);
+
+// Create new assessment 
+  // const newAssessment = await assessmentRepository.create({
+  //   Discipline: "React",
+  //   notice: 9,
+  //   idStudent: "62e278a1-5323-47a8-bebd-93be35f6fe19",
+  // });
+  // console.log(newAssessment);
 }
 main();

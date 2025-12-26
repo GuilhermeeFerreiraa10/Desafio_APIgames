@@ -45,7 +45,7 @@ model Assessment {
   dtAssessment DateTime @default(now()) @map("dt_assessment")
 
   idStudent String @map("id_student") 
-  student Student @relation(fields: [idStudent], references: [id])
+  student Student @relation(fields: [idStudent], references: [id], onDelete: Cascade)
 
   @@map("assessment")
 }
@@ -71,8 +71,8 @@ model Matricula {
   idCourse String @map("id_course")
   dtMatricula DateTime @default(now()) @map("dt_maricula")
 
-  student Student @relation(fields: [idStudent], references: [id])
-  course Course @relation(fields: [idCourse], references: [id])
+  student Student @relation(fields: [idStudent], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [idCourse], references: [id], onDelete: Cascade)
 
   @@id([idStudent, idCourse])
   @@map("matricula")
