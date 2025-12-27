@@ -7,86 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Student {
-  id String @id @default(uuid()) 
-  name String @db.VarChar(120)
-  email String @unique
-  password String
-  dtBirth DateTime? @db.Date @map("dt_birth")
-  formed Boolean @default(false)
+  model Game {
+  id  String @id @default(uuid())
+  title String //Aura Archive
+  genre  String //Fighting, Adventure, RPG
+  multiplayer Boolean @default(true)
+  size Int // 145GB
+  price Decimal // 299.99
+  platform  String //PC, PS5, Xbox X/S
+  createdAt DateTime @default(now())
+  releaseDate DateTime @default(now())
 
-  dtCreate DateTime @map("dt_create") @default(now())
-  dtUptade DateTime @map("dt_uptade") @updatedAt
+  characters Character[]
+  }
+  model Character {
+  id   String @id @default(uuid())
+  name String // Dexter
+  age Int // 34
+  isALive Boolean @default(true) // Yes, he's still alive. 
+  forcePower Int // 85
+  intelligence Int // 160q.i
+  agility String // High
+  magic String // It has no magic.
+  guns String // A sedative, knifes and a chainsaw 
 
-  adress Adress?
-  reviews Assessment[]
-  Matriculas Matricula[]
-
-  @@map("student")
-}
-
-model Adress {
-  id String @id @default(uuid()) 
-  road String @db.VarChar(30)
-  neighborhood String @db.VarChar(30)
-  number Int
-  city String @db.VarChar(50)
-
-  idStudent String @unique  
-  student Student @relation(fields: [idStudent],references: [id])
-
-  @@map("adress")
-}
-
-model Assessment {
-  id String @id @default(uuid()) 
-  Discipline String @db.VarChar(30)
-  notice Int @db.SmallInt
-  dtAssessment DateTime @default(now()) @map("dt_assessment")
-
-  idStudent String @map("id_student") 
-  student Student @relation(fields: [idStudent], references: [id], onDelete: Cascade)
-
-  @@map("assessment")
-}
-
-model Course {
-  id String @id @default(uuid()) 
-  title String
-  ementa String
-  hourlyLoad Decimal
-  maxStudents Int @default(30) @db.SmallInt @map("max_alunos")
-  status String
-
-  dtCreate DateTime @map("dt_create") @default(now())
-  dtUptade DateTime @map("dt_uptade") @updatedAt
-
-  Matriculas Matricula[]
-
-  @@map("course")
-}
-
-model Matricula {
-  idStudent String @map("id_student")
-  idCourse String @map("id_course")
-  dtMatricula DateTime @default(now()) @map("dt_maricula")
-
-  student Student @relation(fields: [idStudent], references: [id], onDelete: Cascade)
-  course Course @relation(fields: [idCourse], references: [id], onDelete: Cascade)
-
-  @@id([idStudent, idCourse])
-  @@map("matricula")
-}
-
-model Material {
-  id Int @id @default(autoincrement()) 
-  title String
-  discription String
-  link String
-  avaliable String
-
-  dtCreate DateTime @map("dt_create") @default(now())
-  dtUptade DateTime @map("dt_uptade") @updatedAt
-
-  @@map("material")
-}
+  gameId String
+  Game Game @relation(fields: [gameId], references: [id])
+  }

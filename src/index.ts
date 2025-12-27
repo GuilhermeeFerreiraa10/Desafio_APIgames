@@ -1,46 +1,72 @@
-import { StudentRepository } from "./datadase/student.repository";
-import { AssessmentRepository } from "./datadase/assessment.repository";
+import express, { Request, Response } from 'express';
+import { GameRepository } from './database/game.repository';
+import { handleError } from "../src/config/error.handler";
+import { CharacterRepository } from './database/character.repository';
 
-const studentRepository = new StudentRepository();
-const assessmentRepository = new AssessmentRepository();
-async function main() {
-  // List all students
-  // const students = await studentRepository.list();
-  // console.log(students);
+const app = express();
+app.use(express.json());
 
-  //Get by ID
-  // const student = await studentRepository.GetbyID("62e278a1-5323-47a8-bebd-93be35f6fe19");
-  // console.log(student);
+const gameRepo = new GameRepository();
+const charRepo = new CharacterRepository();
 
-  // Create new student
-  // const newStudent = await studentRepository.create({
-  //   name: "Andreia Ferreira",
-  //   email: "andreia13@example.com",
-  //   password: "123456",
-  // });
+// --- ROUTES OF AURA ARCHIVE ---
 
-  // console.log(newStudent);
+// Route to register the game
+app.post('/games', async (req: Request, res: Response) => {
+  try {
+    const game = await gameRepo.create(req.body);
+    res.status(201).json(game);
+  } catch (error: any) {
+    handleError(res, error); // Usando seu handler
+  }
+});
 
+// Route to list all games
+app.get('/games', async (req: Request, res: Response) => {
+  try {
+    const games = await gameRepo.findAll();
+    res.json(games);
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
 
-// Update student
-//   const updatedStudent = await studentRepository.update("62e278a1-5323-47a8-bebd-93be35f6fe19", {
-//     name: "Andreia Souza",
-//     email: "deia13@example.com",
-//   });
+// Route to register the Character 
+app.post('/characters', async (req: Request, res: Response) => {
+  try {
+    const character = await charRepo.create(req.body);
+    res.status(201).json(character);
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
 
-//   console.log(updatedStudent);
-// }
+// Update a character
+app.put('/characters/:id', async (req: Request, res: Response) => {
+  const id  = req.params.id as string
+  try {   
+    const updatedCharacter = await charRepo.update(id, req.body);
+    res.json(updatedCharacter);
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
 
-// Delete student
-//   const deletedStudent = await studentRepository.delete("43310507-a843-4e0a-84cb-5df0e3926b03");
-//   console.log(deletedStudent);
+// Delete a character 
+app.delete('/characters/:id', async (req: Request, res: Response) => {
+  const id = req.params.id as string
+  try {
+    await charRepo.delete(id);
+    res.status(204).send(); 
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
 
-// Create new assessment 
-  // const newAssessment = await assessmentRepository.create({
-  //   Discipline: "React",
-  //   notice: 9,
-  //   idStudent: "62e278a1-5323-47a8-bebd-93be35f6fe19",
-  // });
-  // console.log(newAssessment);
-}
-main();
+//-----------------------------------------------------------------------
+// Port where the server will run
+const PORT = 3333;
+app.listen(PORT, () => {
+  console.log(`--- Aura Archive Online ---`);
+  console.log(`Server running at http://localhost:${PORT}`);
+});
