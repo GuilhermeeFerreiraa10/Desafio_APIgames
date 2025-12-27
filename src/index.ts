@@ -17,7 +17,7 @@ app.post('/games', async (req: Request, res: Response) => {
     const game = await gameRepo.create(req.body);
     res.status(201).json(game);
   } catch (error: any) {
-    handleError(res, error); // Usando seu handler
+    handleError(res, error); 
   }
 });
 
@@ -36,6 +36,49 @@ app.post('/characters', async (req: Request, res: Response) => {
   try {
     const character = await charRepo.create(req.body);
     res.status(201).json(character);
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
+
+// LIST ALL CHARACTERS DIRECTLY
+app.get('/characters', async (req: Request, res: Response) => {
+  try {
+    const characters = await charRepo.findAll();
+    res.json(characters);
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
+
+// SEARCH CHARACTERS BY NAME
+app.get('/characters/search/:name', async (req: Request, res: Response) => {
+  try {
+    const { name } = req.params;
+    const characters = await charRepo.findByName(name!);
+    res.json(characters);
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
+
+// 1. Rota de Estatísticas (Placar Geral)
+app.get('/stats', async (req: Request, res: Response) => {
+  try {
+    const stats = await gameRepo.getStats();
+    res.json(stats);
+  } catch (error: any) {
+    handleError(res, error);
+  }
+});
+
+// 2. Rota de Personagens por Jogo (Filtro Específico)
+app.get('/games/:gameId/characters', async (req: Request, res: Response) => {
+  try {
+    const { gameId } = req.params;
+    // O '!' garante ao TS que o ID existe na URL
+    const characters = await charRepo.findByGame(gameId!); 
+    res.json(characters);
   } catch (error: any) {
     handleError(res, error);
   }

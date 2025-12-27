@@ -19,6 +19,24 @@ export class CharacterRepository {
       },
     });
   }
+
+
+async findAll() {
+  return await prisma.character.findMany();
+}
+
+
+async findByName(name: string) {
+  return await prisma.character.findMany({
+    where: {
+      name: {
+        contains: name,
+        mode: 'insensitive', // Ignora se é maiúsculo ou minúsculo
+      },
+    },
+  });
+}
+
 async update(id: string, data: any) {
     return await prisma.character.update({
         where: { id },
@@ -31,5 +49,13 @@ async delete(id: string) {
         where: { id }
     });
 }
-  // ... rest of the code
+  
+async findByGame(gameId: string) {
+  return await prisma.character.findMany({
+    where: { gameId }
+  });
+}
+
+
+
 }

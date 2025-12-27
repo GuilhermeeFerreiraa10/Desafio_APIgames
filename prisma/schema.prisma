@@ -29,7 +29,8 @@ datasource db {
   intelligence Int // 160q.i
   agility String // High
   magic String // It has no magic.
-  guns String // A sedative, knifes and a chainsaw 
+  guns String // A sedative, knifes and a chainsaw
+  isDLC Boolean @default(false)
 
   gameId String
   Game Game @relation(fields: [gameId], references: [id])

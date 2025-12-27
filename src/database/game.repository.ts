@@ -34,5 +34,14 @@ export class GameRepository {
       include: { characters: true },
     });
   }
- 
+  //Search for Characters by game
+    async getStats() {
+    const totalGames = await prisma.game.count();
+    const totalCharacters = await prisma.character.count();
+    return {
+      totalGames,
+      totalCharacters,
+      message: "Aura Archive Database Status"
+    };
+  }
 }
