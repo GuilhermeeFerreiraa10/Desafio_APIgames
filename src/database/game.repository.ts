@@ -20,32 +20,40 @@ export class GameRepository {
   return await prisma.game.findUnique({
     where: { id },
     include: {
-      characters: true, // Isso puxa a lista de personagens vinculados
+      characters: true, 
     },
   });
 }
 
 async delete(id: string) {
   return await prisma.game.delete({
-    where: { id }
+    where: { 
+      id 
+    }
   });
 }
 
 async update(id: string, data: any) {
   return await prisma.game.update({
     where: { id },
-    data: data, // Aqui o Prisma valida se 'data' tem os tipos certos
+    data: data, 
   });
 }
 
-  // Listar todos os jogos para você pegar o ID no Postman
+  // Listar todos os jogos 
   async findAll() {
     return await prisma.game.findMany({
       include: {
-        characters: true, // Já traz os personagens vinculados 
+        characters: true,  
       },
     });
   }
+
+async findByTitle(title: string) {
+  return await prisma.game.findUnique({
+    where: { title: title }
+  });
+}
 
   // Buscar um jogo específico por ID
   async findById(id: string) {

@@ -9,12 +9,12 @@ datasource db {
 
   model Game {
   id  String @id @default(uuid())
-  title String //Aura Archive
-  genre  String //Fighting, Adventure, RPG
+  title String @unique
+  genre  String 
   multiplayer Boolean @default(true)
-  size Int // 145GB
-  price Decimal // 299.99
-  platform  String //PC, PS5, Xbox X/S
+  size Int
+  price Decimal 
+  platform  String 
   createdAt DateTime @default(now())
   releaseDate DateTime @default(now())
 
@@ -22,14 +22,14 @@ datasource db {
   }
   model Character {
   id   String @id @default(uuid())
-  name String // Dexter
-  age Int // 34
-  isALive Boolean @default(true) // Yes, he's still alive. 
-  forcePower Int // 85
-  intelligence Int // 160q.i
-  agility String // High
-  magic String // It has no magic.
-  guns String // A sedative, knifes and a chainsaw
+  name String @unique
+  age Int
+  isALive Boolean @default(true) 
+  forcePower Int 
+  intelligence Int 
+  agility String   
+  magic String 
+  guns String
   isDLC Boolean @default(false)
 
   gameId String
