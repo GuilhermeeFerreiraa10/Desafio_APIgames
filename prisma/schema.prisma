@@ -33,5 +33,5 @@ datasource db {
   isDLC Boolean @default(false)
 
   gameId String
-  Game Game @relation(fields: [gameId], references: [id])
+  Game Game @relation(fields: [gameId], references: [id], onDelete: Cascade )
   }

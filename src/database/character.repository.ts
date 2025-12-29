@@ -15,6 +15,7 @@ export class CharacterRepository {
         agility: data.agility,
         magic: data.magic,
         guns: data.guns,
+         isDLC: data.isDLC ?? false,
         gameId: data.gameId,
       },
     });
@@ -26,14 +27,14 @@ async findAll() {
 }
 
 
-async findByName(name: string) {
+async searchByName(name: string) {
   return await prisma.character.findMany({
     where: {
       name: {
-        contains: name,
-        mode: 'insensitive', // Ignora se é maiúsculo ou minúsculo
-      },
-    },
+        contains: name,       
+        mode: 'insensitive'  
+      }
+    }
   });
 }
 

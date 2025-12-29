@@ -4,7 +4,6 @@ import { CreateGameDto } from '../dtos/create-game.dto';
 const prisma = new PrismaClient();
 
 export class GameRepository {
-  // Criar o jogo (ex: Mortal Kombat 1)
   async create(data: CreateGameDto) {
     return await prisma.game.create({
       data: {
@@ -17,6 +16,27 @@ export class GameRepository {
       },
     });
   }
+  async getGameWithCharacters(id: string) {
+  return await prisma.game.findUnique({
+    where: { id },
+    include: {
+      characters: true, // Isso puxa a lista de personagens vinculados
+    },
+  });
+}
+
+async delete(id: string) {
+  return await prisma.game.delete({
+    where: { id }
+  });
+}
+
+async update(id: string, data: any) {
+  return await prisma.game.update({
+    where: { id },
+    data: data, // Aqui o Prisma valida se 'data' tem os tipos certos
+  });
+}
 
   // Listar todos os jogos para você pegar o ID no Postman
   async findAll() {
@@ -45,3 +65,4 @@ export class GameRepository {
     };
   }
 }
+
