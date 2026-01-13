@@ -5,5 +5,4 @@ export interface CreateGameDto {
   size: number;
   price: number;
   platform: string;
-  releaseDate?: Date; // Opcional, pois no schema tem default(now)
 }
