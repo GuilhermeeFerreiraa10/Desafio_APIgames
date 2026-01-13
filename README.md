@@ -24,12 +24,5 @@ A API segue o padrão REST, permitindo as seguintes operações:
 - **POST**: Criação de novos registros de jogos e heróis.
 - **PUT**: Atualização de informações existentes.
 - **DELETE**: Remoção de registros do banco de dados.
-
-## 🛠️ Como rodar o projeto
-1. Instale as dependências: `npm install`
-2. Configure seu `.env` com a DATABASE_URL do Neon.
-3. Sincronize o banco: `npx prisma db push`
-4. Rode o servidor: `npm run dev`
-
 ---
 Desafio concluído com sucesso como parte do currículo de formação da **Growdev**! 🕹️
