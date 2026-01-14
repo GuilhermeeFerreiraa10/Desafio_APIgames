@@ -5,7 +5,7 @@ Este projeto é um desafio prático proposto pela **Growdev** para consolidar co
 ## 🚀 Tecnologias Utilizadas
 - **Node.js**: Ambiente de execução.
 - **TypeScript**: Tipagem estática para maior segurança e produtividade.
-- **Prisma ORM**: Modelagem de dados e comunicação eficiente com o banco.
+- **Prisma ORM**: Modelagem de dados e comunicação eficiente com o banco. (versão 6.1.9)
 - **PostgreSQL (Neon.tech)**: Banco de dados relacional hospedado na nuvem (AWS).
 - **Express**: Framework para criação e gerenciamento de rotas.
 
